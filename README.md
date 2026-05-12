@@ -1,47 +1,52 @@
 # AI Vocal Coach Demo
 
-This project is a proposal-day prototype for an AI vocal coach. The goal is to analyze a short singing clip and give beginner-friendly feedback.
+## Project Overview
 
-## Current Demo
+This project is a proposal-stage prototype for an AI vocal coach. The goal is to analyze a short singing clip and provide beginner-friendly feedback about vocal technique.
 
-The current demo uses vocal audio from VocalSet / Annotated VocalSet and classifies a short clip into a basic vocal technique category such as breathy, vibrato, or straight tone. The prediction is converted into simple coaching feedback.
+For Proposal Day, I built a small working demo that classifies a vocal clip as one of three technique categories:
 
-## Pipeline
+- breathy
+- straight
+- vibrato
 
-Audio clip → feature extraction → technique classifier → predicted label → coaching feedback
+The demo then converts the predicted technique into simple coaching feedback.
 
-## Dataset
+## Dataset Selection
 
-Dataset source: VocalCoachingDatasets GitHub resource.
-Planned dataset: VocalSet or Annotated VocalSet.
+I started from the provided GitHub database:
 
-The full dataset is not included in this repository because of file size and licensing.
+https://github.com/charisrenee/VocalCoachingDatasets/blob/main/datasets.csv
 
-## How to Run
+I reviewed several dataset options from the database:
 
-1. Install requirements:
-pip install -r requirements.txt
+| Dataset | Why it matters | Use in this project |
+|---|---|---|
+| VocalSet | Contains vocal technique categories such as breathy, vibrato, belt, and others | Chosen for proposal demo |
+| Annotated-VocalSet | Adds note-level and pitch/F0 annotations | Possible final project extension |
+| GTSinger | Larger singing dataset with technique and pitch information | Possible future extension |
+| VocalVerse / SingMD | Singing evaluation and expert feedback | Possible future scoring/feedback layer |
+| SingEval | Karaoke-style singing assessment | Possible future evaluation dataset |
 
-2. Add dataset clips into:
-data/breathy/
-data/vibrato/
-data/straight/
+## Chosen Dataset for Proposal Demo
 
-3. Train model:
-python train_model.py
+I chose VocalSet because it directly matches my current demo goal: vocal technique recognition.
 
-4. Run demo:
-python demo.py
+For the proposal demo, I used a small local subset of VocalSet with three technique labels:
 
-## Proposal Day Scope
+- breathy
+- straight
+- vibrato
 
-For 5/12, the demo shows a small AI pipeline that analyzes a singing clip and outputs coaching feedback.
+The full dataset is not included in this repository because it is large and should remain local.
 
-## Final Project Plan
+## Current Demo Pipeline
 
-Future work:
-- Add NanoPitch pitch tracking
-- Add note-level pitch accuracy
-- Add pitch trace visualization
-- Add more vocal technique categories
-- Build a simple web interface
+```text
+VocalCoachingDatasets GitHub database
+→ choose VocalSet
+→ select breathy / straight / vibrato clips
+→ extract MFCC audio features
+→ train Random Forest classifier
+→ predict vocal technique
+→ output beginner-friendly coaching feedback
